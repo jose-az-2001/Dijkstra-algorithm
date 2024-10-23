@@ -9,16 +9,15 @@
 
 using namespace std;
 
-
-void dijkstra(map<int, map<int, map<int, int>>> aristas, int inicio, int fin) {
-    // aristas = {no_arista: {nodo_inicio: {nodo_fin: peso}}}
+void dijkstra(map<int, map<int, int>> aristas, int inicio, int fin) {
+    // aristas = {nodo_inicio: {nodo_fin: peso}}
     map<int, int> distancias;   // Para almacenar las distancias mínimas desde el nodo inicial
     map<int, string> rutas;     // Para almacenar las rutas
     map<int, bool> visitados;   // Para marcar qué nodos ya fueron procesados
 
     // Inicializar las distancias a infinito y las rutas vacías
     for (const auto& arista : aristas) {
-        int nodo = arista.second.begin()->first; // Nodo de inicio
+        int nodo = arista.first; // Nodo de inicio
         distancias[nodo] = numeric_limits<int>::max(); // Infinito
         rutas[nodo] = "";
     }
@@ -53,7 +52,7 @@ void dijkstra(map<int, map<int, map<int, int>>> aristas, int inicio, int fin) {
         // Actualizar las distancias de los nodos vecinos
         for (const auto& destino : aristas[nodoActual]) {
             int nodoFin = destino.first;
-            int peso = destino.second.begin()->second; // Peso de la arista
+            int peso = destino.second;
 
             // Si encontramos una distancia más corta, la actualizamos
             if (distancias[nodoActual] + peso < distancias[nodoFin]) {

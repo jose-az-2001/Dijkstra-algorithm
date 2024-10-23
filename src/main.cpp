@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int numNodos, numAristas, nodoinicio, nodofin;
     int arista_inicio, arista_fin, peso;
-    map<int, map<int, map<int, int>>> aristas; // {no_arista, nodo_inicio: {nodo_fin: peso}}
+    map<int, map<int, int>> aristas; // {nodo_inicio: {nodo_fin: peso}}
 
     cout << "======================================" << endl;
     cout << "      Ruta más corta con Dijkstra     " << endl;
@@ -23,15 +23,14 @@ int main() {
     cin >> nodofin;
     cout << "======================================" << endl;
 
+    cout << "Ingrese las aristas en el formato: nodo_inicio nodo_fin peso" << endl;
+    cout << "Por ejemplo: 1 2 400" << endl;
+    cout << "======================================" << endl;
+
     for (int i = 0; i < numAristas; i++) {
-        cout << "Ingrese el nodo de inicio de la arista: ";
-        cin >> arista_inicio;
-        cout << "Ingrese el nodo final de la arista: ";
-        cin >> arista_fin;
-        cout << "Ingrese el peso de la arista: ";
-        cin >> peso;
+        cin >> arista_inicio >> arista_fin >> peso;
         // Agregar arista al grafo
-        aristas.insert({i, {{arista_inicio, {arista_fin, peso}}}});
+        aristas[arista_inicio][arista_fin] = peso;
     }
 
     // Llamada al método Dijkstra

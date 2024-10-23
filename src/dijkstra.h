@@ -5,6 +5,6 @@
 #include <map>
 using namespace std;
 
-void dijkstra(const map<int, map<int, map<int, int>>> aristas, int inicio, int fin);
+void dijkstra(map<int, map<int, int>> aristas, int inicio, int fin);
 
 #endif
